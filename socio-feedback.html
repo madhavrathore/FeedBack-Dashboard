@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Feedback</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+	<!-- Adding additional CSS -->
+
+	<link rel="stylesheet" type="text/css" href="styles/sociofeedback.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+
+</head>
+<body ng-app="reviewApp">
+
+	<header>
+
+		<nav class="navbar navbar-expand-md bg-light">
+
+			<a href="" class="active nav-item">
+				Feedback Dashboard
+			</a>
+			
+		</nav>
+
+	</header>
+		
+<div class="container-fluid" ng-controller="reviewController">
+    
+    <div class="headerItem">
+      <span>
+        <strong>
+          Reviews
+        </strong>
+      </span>   
+    </div>
+
+    <div>
+        <select ng-model="productId" ng-change="loadReviews()">
+          <option value="" disabled>Select Product Id</option>
+          <option ng-repeat="value in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] track by $index" ng-selected="{{value == 1}}" value="{{ $index+1 }}">{{ $index+1 }}</option>
+        </select>
+
+        <select  ng-model="viewerId" ng-change="loadReviews()">
+          <option value="" disabled>Viewer Id </option>
+          <option ng-repeat="value in [1,2,3,4] track by $index"  ng-selected="{{value == 1}}" value="{{$index+1}}">{{$index+1}}</option>
+        </select>
+
+        <select  id="sort" onchange="sortAccording()">
+            <option value="" disabled selected hidden>Sort By</option>
+            <option value="Rating">Rating High to Low</option>
+            <option value="Rating">Rating Low to High</option>
+            <option value="connectionLevel">Connection High to Low</option>
+            <option value="connectionLevel">Connection Low to High</option>
+            <option value="usefulness">usefulness High to Low</option>
+            <option value="usefulness">usefulness Low to High</option>
+        </select>
+    </div>
+
+
+      <div ng-show="isLoading">Loading!!! Please wait...</div>
+        <div class="row row-cols-1 row-cols-md-3" ng-hide="isLoading">
+          <div class="col-sm-4 rule" ng-repeat="review in reviews | startIndex: (currentPage-1)*pageSize | limitTo:pageSize">
+            <div class="card">
+              <div class="card-body">
+                <table>
+                  <tr>
+                    <td> 
+                        {{ review.ratings['Overall'] }}
+                        <span class="fa fa-star checked"></span>
+                    </td>
+                      <td>
+                        <span class="userName">{{ review.reviewer['name'] }}</span>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <label>Title:</label>
+                    </td>
+                    <td>
+                        <span>{{ review.title }}</span>
+                    </td>
+                    <td></td>
+                    <td>
+                        <i class="fa fa-sort-up fa-2x"></i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Commment:</label>
+                    </td>
+                    <td>
+                      <p>  {{review.comment}} </p>
+                    </td>
+                    <td></td>
+                    <td>
+                        {{ review.usefulness}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                      <td>
+                        <i class="fa fa-sort-down fa-2x"></i>
+                      </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                        <!-- <label>Delivery Rating</label>
+                        <label>discounts_and_offers</label>
+                        <label>Maches Description</label>
+                        <label>Maches Photo</label>
+                        <label>Packaging</label>
+                        <label>Price</label> -->
+                    </td>
+                    <td>
+                        <!-- {{ review.ratings['delivery_time'] }}
+                        {{ review.ratings['discounts_and_offers'] }}
+                        {{ review.ratings['matches_description'] }}
+                        {{ review.ratings['matches_photo'] }}
+                        {{ review.ratings['packaging'] }}
+                        {{ review.ratings['price'] }} -->
+                    </td>
+                  </tr>
+                    <tr>
+                      <td colspan="3" class="text-center">
+                        <button type="submit" class="btn btn-outline-success" ng-click="loadMore(this)">Show More </button>
+                      </td>               
+                          
+                </table>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="paginationButton" ng-hide="isLoading">
+              <button class="btn btn-outline-success" ng-disabled="currentPage == 1" ng-click="currentPage=currentPage-1">
+                      Previous
+              </button>
+                     <span> {{currentPage}}/{{totalPages}}</span>
+              <button class="btn btn-outline-success"  ng-disabled="currentPage >= totalPages" ng-click="currentPage=currentPage+1">
+                Next
+            </button>
+        </div>
+</div>
+
+</body>
+<script  src="app.js"></script>
+</html>

@@ -1,0 +1,123 @@
+body{
+	width: 100%;
+	font-family: roboto,sans-serif;
+	padding: 0;
+	margin:0;
+	height:auto ;
+}
+
+.headerItem{
+	font-size:30px;
+	padding-bottom: 3px;
+	padding-top: 3px; 
+}
+select{
+		width:10%;
+		line-height: 1em;
+		padding: 2px;
+		margin: 13px 6px;
+		margin-bottom: 10px;
+}
+.card{
+	height:110%;
+	margin-top: 60px;
+}
+ul{
+	list-style: none;
+}
+.text-center button{
+	margin-bottom: -160px;	
+
+}
+.card-body{
+	margin-left: -23px;
+}
+.checked{
+	color: gold;
+}
+
+span{
+	font-family: roboto;
+}
+
+table{
+	text-align: center;
+}
+td{
+	margin-left: 5px;
+}
+label{
+	margin-left: 10px;
+}
+.rule{
+	padding: 2px;
+	margin-bottom: 30px;
+}
+
+.paginationButton{
+	margin-top: 7%;
+	margin-left: 82%
+}
+
+button[disabled]{
+	background-color: lightgrey !important;
+	color: black !important;
+	outline-color: black !important;
+}
+
+
+
+@media only screen and (max-width: 600px)
+{
+	body{
+		width:100%;
+		height: auto; 
+		font-family: roboto,sans-serif;	
+		padding: 0;
+		margin: 0;
+	}
+	.headerItem{
+		font-size: 18px;
+		padding: 3px;
+	}
+	select{
+		width:60%;
+		line-height: 1em;
+		padding: 2px;
+		margin: 14px 10px;
+		margin-bottom: 5px;
+	}
+	.card{
+		width:100%;
+		max-width:20rem;
+		padding: 2px;
+		margin: 5px;
+	}
+	ul{
+		list-style: none;
+	}
+	option{
+		width:20%;
+	}
+	td .btn{
+		margin-top: -80px;
+	}
+
+	.paginationButton{
+		margin-left: 12px;
+		text-align: center;
+		margin-top: 12px;
+	}
+}
+
+@media only screen and (max-width: 412px)
+{
+	select{
+		width:60%;
+		line-height: 1em;
+		padding: 2px;
+		margin: 14px 10px;
+		margin-bottom: 4px;
+	}
+}
+
