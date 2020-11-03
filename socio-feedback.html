@@ -52,7 +52,7 @@
           <option ng-repeat="value in [1,2,3,4] track by $index"  ng-selected="{{value == 1}}" value="{{$index+1}}">{{$index+1}}</option>
         </select>
 
-        <select  id="sort" onchange="sortAccording()">
+        <select  id="sort">
             <option value="" disabled selected hidden>Sort By</option>
             <option value="Rating">Rating High to Low</option>
             <option value="Rating">Rating Low to High</option>
